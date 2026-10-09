@@ -55,10 +55,19 @@ extern "C" fn trap_handler(frame: usize) -> usize {
     }
 }
 
+const BANNER: &str = concat!(
+    "  ███  ███   ████ \n",
+    "   █  █   █ █     \n",
+    "   █  █   █  ███  \n",
+    "█  █  █   █     █ \n",
+    " ██    ███  ████\n",
+);
+
 #[no_mangle]
 extern "C" fn kmain() -> ! {
     heap::init();
     let (total, _) = heap::stats();
+    println!("{}", BANNER);
     println!("rvos 0.2 booting on RISC-V (machine mode)");
     println!("heap ready: {} MiB", total / (1024 * 1024));
 
